@@ -1,19 +1,14 @@
 import React from 'react'
 import './Sort.css'
-const Sort = () => {
+const Sort = ({setChoosenSort}) => {
     return (
         <div className="collection-sort">
-            <label>Filter by:</label>
-            <select>
-            <option value="/">All Jackets</option>
-            <option value="/">2016</option>
-            <option value="/">jacket</option>
-            <option value="/">Jackets</option>
-            <option value="/">layers</option>
-            <option value="/">Obermeyer</option>
-            <option value="/">Roxy</option>
-            <option value="/">womens</option>
-            </select>
+            <label>Sort by:</label>
+                <select onChange={(x) => setChoosenSort(x.target.value) }>
+                    <option value="Price: Low - High">Price: Low - High </option>
+                    <option value="Price: High - Low">Price: High - Low </option>
+                    <option value="Category">Category</option>
+                </select>
         </div>
     )  
 }
