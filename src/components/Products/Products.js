@@ -11,8 +11,8 @@ const sortedProductsPriceLow2High = (x) =>
   x.sort((p1, p2) => (p1.price < p2.price ? -1 : p1.price > p2.price ? 1 : 0));
 const sortedProductByCategory = (x) => x.sort((p1, p2) => p1.id - p2.id);
 
-const Products = ({ choosenSort, products }) => {
-  const { loading } = useContext(MyContext);
+const Products = () => {
+  const { loading, products, choosenSort } = useContext(MyContext);
 
   if (choosenSort === "Price: Low - High") {
     sortedProductsPriceLow2High(products);
@@ -21,6 +21,7 @@ const Products = ({ choosenSort, products }) => {
   } else {
     sortedProductByCategory(products);
   }
+
   return !loading ? (
     <div className="products">
       {products.map(function (event, index) {
@@ -31,6 +32,7 @@ const Products = ({ choosenSort, products }) => {
             title={event.title}
             price={event.price}
             Urlimage={event.image}
+            id={event.id}
           />
         );
       })}

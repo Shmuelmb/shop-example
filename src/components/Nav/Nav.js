@@ -2,15 +2,15 @@ import React from "react";
 import "./Nav.css";
 import Sort from "./Sort/Sort.js";
 import Filter from "./Filter/Filter.js";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
-const Nav = ({ setChoosenSort, categories, onFilterChange }) => {
+const Nav = () => {
   return (
-    <nav className="product-filter">
+    <nav className="nav">
       <h1>Shop online</h1>
-      <div className="sort">
-        <Filter onFilterChange={onFilterChange} categories={categories} />
-        <Sort setChoosenSort={setChoosenSort} />
-      </div>
+      <Filter />
+      <Sort />
+      <ShoppingCart />
     </nav>
   );
 };

@@ -1,7 +1,11 @@
 import React from "react";
 import "./Filter.css";
+import MyContext from "../../../MyContext";
+import { useContext } from "react";
 
-const Filter = ({ categories, onFilterChange }) => {
+
+const Filter = () => {
+  const { onFilterChange, categories } = useContext(MyContext);
   return (
     <div className="collection-sort">
       <label>Filter by:</label>

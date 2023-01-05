@@ -3,7 +3,7 @@ import "./Product.css";
 import Buybtn from "./btns/Buybtn.js";
 import Addbtn from "./btns/Addbtn.js";
 
-const Product = ({ Urlimage, title, price, category }) => {
+const Product = ({ id, Urlimage, title, price, category }) => {
   return (
     <div className="product" category={category}>
       <img src={Urlimage} alt={title} />
@@ -11,9 +11,9 @@ const Product = ({ Urlimage, title, price, category }) => {
         <p>{title}</p>
         <p>${price}</p>
       </div>
-      <div className="btn">
-        <Buybtn />
-        <Addbtn />
+      <div className="btns">
+        <Buybtn title={title} id={id} />
+        <Addbtn id={id} />
       </div>
     </div>
   );

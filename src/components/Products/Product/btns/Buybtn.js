@@ -1,11 +1,11 @@
-import React from 'react'
-import './Buybtn.css'
-const Buybtn = () => {
+import React from "react";
+import "./btn.css";
+const Buybtn = ({ title, id }) => {
   return (
-    <div>
-        <button className='buybtn'>Buy Now!</button>
-    </div>
-  )
-}
+    <button name={title} id={id} className="btn buyBtn">
+      Buy Now!
+    </button>
+  );
+};
 
-export default Buybtn
+export default Buybtn;

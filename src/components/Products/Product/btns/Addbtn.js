@@ -1,11 +1,27 @@
-import React from 'react'
-import './Addbtn.css'
-const Addbtn = () => {
-  return (
-    <div>
-        <button className='addbtn'> Add to cart</button>
-    </div>
-  )
-}
+import React, { useContext } from "react";
+import MyContext from "../../../../MyContext";
+import "./btn.css";
 
-export default Addbtn
+const Addbtn = ({ id }) => {
+  const addAmount = (arr, setArr, eventOfClick) => {
+    const newArr = [...arr];
+    const clickID = eventOfClick.target.id;
+    newArr.map((ev) => {
+      ev.id === parseInt(clickID) && ev.Amount++;
+    });
+    setArr(newArr);
+  };
+
+  const { setCartList, cartList, addKeyForObjState } = useContext(MyContext);
+
+  return (
+    <button
+      id={id}
+      onClick={(event) => addAmount(cartList, setCartList, event)}
+      className="btn addBtn">
+      Add to cart
+    </button>
+  );
+};
+
+export default Addbtn;
