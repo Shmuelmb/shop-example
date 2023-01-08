@@ -6,13 +6,10 @@ const Addbtn = ({ id }) => {
   const addAmount = (arr, setArr, eventOfClick) => {
     const newArr = [...arr];
     const clickID = eventOfClick.target.id;
-    newArr.map((ev) => {
-      ev.id === parseInt(clickID) && ev.Amount++;
-    });
+    newArr.map((ev) => ev.id === parseInt(clickID) && ev.Amount++);
     setArr(newArr);
   };
-
-  const { setCartList, cartList, addKeyForObjState } = useContext(MyContext);
+  const { setCartList, cartList } = useContext(MyContext);
 
   return (
     <button

@@ -17,9 +17,8 @@ const ShoppingCart = () => {
         (item, index) =>
           item.Amount > 0 && (
             <div key={index} className="itemInCart">
-              <p>
-                {item.title} Amount: {item.Amount}
-              </p>
+              <p>{item.title}</p>
+              <p className="p2"> Amount: {item.Amount}</p>
               <button
                 id={item.id}
                 onClick={(event) => removeAmount(cartList, setCartList, event)}>

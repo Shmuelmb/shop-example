@@ -23,9 +23,7 @@ function App() {
 
   function addKeyForObjState(arr, setArr, key, value, data) {
     const newArr = [...data];
-    newArr.map((ev) => {
-      ev[key] = value;
-    });
+    newArr.map((ev) => (ev[key] = value));
     setArr(newArr);
   }
 
