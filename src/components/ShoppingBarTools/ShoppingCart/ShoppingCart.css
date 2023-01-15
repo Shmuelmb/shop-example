@@ -1,0 +1,14 @@
+.shoppingCart{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.itemInCart{
+    display: flex;
+    gap: 10px;    
+}
+
+.p2{
+    color: red;
+}

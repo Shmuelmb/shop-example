@@ -1,0 +1,14 @@
+.ProductPage{
+    display: flex;
+    height: 300px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(254, 254, 254);
+    gap: 10px;
+}
+
+.ProductPage  > img{
+    width: 200px;
+    height: 200px;
+}

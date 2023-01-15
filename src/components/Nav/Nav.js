@@ -1,16 +1,26 @@
 import React from "react";
 import "./Nav.css";
-import Sort from "./Sort/Sort.js";
-import Filter from "./Filter/Filter.js";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="nav">
-      <h1>Shop online</h1>
-      <Filter />
-      <Sort />
-      <ShoppingCart />
+      <h1
+        onClick={() => {
+          navigate("products");
+        }}>
+        Shop online
+      </h1>
+      <button
+        onClick={() => {
+          navigate("/");
+        }}>
+        Welcome Page
+      </button>
+      <button onClick={() => navigate("about")}>About me</button>
     </nav>
   );
 };
