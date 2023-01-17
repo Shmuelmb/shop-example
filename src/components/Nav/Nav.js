@@ -1,7 +1,7 @@
 import React from "react";
 import "./Nav.css";
-
 import { useNavigate } from "react-router-dom";
+import ShoppingCart from "./ShoppingCart/ShoppingCart";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Nav = () => {
     <nav className="nav">
       <h1
         onClick={() => {
-          navigate("products");
+          navigate("/products");
         }}>
         Shop online
       </h1>
@@ -21,6 +21,8 @@ const Nav = () => {
         Welcome Page
       </button>
       <button onClick={() => navigate("about")}>About me</button>
+      <button>Cart</button>
+      <ShoppingCart />
     </nav>
   );
 };

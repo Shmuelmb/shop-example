@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import MyContext from "./MyContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ShopMain from "./components/ShopMain/ShopMain";
@@ -8,6 +8,7 @@ import AboutMe from "./components/AboutMe/AboutMe";
 import Nav from "./components/Nav/Nav";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import ProductPage from "./components/ProductPage/ProductPage";
+
 function App() {
   // useState object
   const [choosenSort, setChoosenSort] = useState("");
@@ -26,43 +27,28 @@ function App() {
     }
   };
 
-  function addKeyForObjState(setArr, key, value, data) {
+  const addKeyForObjState = (setArr, key, value, data) => {
     const newArr = [...data];
     newArr.map((ev) => (ev[key] = value));
     setArr(newArr);
-  }
+  };
 
   const createCategories = (arrayOfProcuts) =>
     arrayOfProcuts
       .map((p) => p.category)
       .filter((value, index, array) => array.indexOf(value) === index);
 
-  // get data from api
-
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        setAllProducts(data);
-        setProducts(data);
-        addKeyForObjState(setCartList, "Amount", 0, data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, []);
-
   const categories = createCategories(allProducts);
   categories.unshift("All categories");
+
   return (
     <BrowserRouter>
       <MyContext.Provider
         value={{
+          addKeyForObjState,
+          setProducts,
+          setAllProducts,
+          setLoading,
           productID,
           setProductID,
           products,
@@ -74,7 +60,6 @@ function App() {
           onFilterChange,
           setChoosenSort,
           allProducts,
-          addKeyForObjState,
         }}>
         <Nav />
         <Routes>
