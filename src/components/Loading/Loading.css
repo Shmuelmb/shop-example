@@ -1,7 +1,4 @@
 
-  
-
-  
   .spinner::after {
     content: '';
     box-sizing: border-box;
@@ -18,6 +15,10 @@
     border-left: 10px solid rgb(0, 0, 0);
     border-right: 10px solid rgba(255, 255, 255, 0.0);
     animation: spinner .6s linear infinite;
+  }
+
+  .loadingContainer{
+    padding-left: 1000px;
   }
   
   @keyframes spinner {

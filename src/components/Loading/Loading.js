@@ -2,7 +2,7 @@ import React from "react";
 import "./Loading.css";
 const Loading = () => {
   return (
-    <div>
+    <div className="loadingContainer">
       <span className="smooth spinner" />
     </div>
   );

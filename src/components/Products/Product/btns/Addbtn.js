@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import MyContext from "../../../../MyContext";
 import "./btn.css";
+import Button from "@mui/material/Button";
 
 const Addbtn = ({ id }) => {
   const { setCartList, cartList } = useContext(MyContext);
@@ -11,21 +12,21 @@ const Addbtn = ({ id }) => {
     newArr.map((ev) => {
       if (ev.id === parseInt(clickID)) {
         ev.Amount++;
-        // הבעיה עם זה שכשאני יוסיף עוד פריט לרשימה מה שיקרה זה שהמוצר יעבור לסוף הרשימה ואני לא רוצה א זה
       }
     });
     setArr(newArr);
   };
 
   return (
-    <button
+    <Button
+      color="success"
       id={id}
       onClick={(event) => {
         addAmount(cartList, setCartList, event);
       }}
       className="btn addBtn">
       Add to cart
-    </button>
+    </Button>
   );
 };
 

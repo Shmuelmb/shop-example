@@ -2,11 +2,15 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 30%;
 }
 
 .itemInCart{
     display: flex;
-    gap: 10px;    
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+
 }
 
 .itemInCart >img{
@@ -14,6 +18,11 @@
     height: 50px;
 }
 
+.itemInCart > p{
+    text-align: left; 
+    width: 30%;
+}
+
 .p2{
-    color: red;
+    text-align: center;
 }

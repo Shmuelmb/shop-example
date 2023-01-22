@@ -8,22 +8,25 @@ const sortedProductsPriceHigh2Low = (x) =>
   x.sort((p1, p2) => (p1.price < p2.price ? 1 : p1.price > p2.price ? -1 : 0));
 const sortedProductsPriceLow2High = (x) =>
   x.sort((p1, p2) => (p1.price < p2.price ? -1 : p1.price > p2.price ? 1 : 0));
-const sortedProductByCategory = (x) => x.sort((p1, p2) => p1.id - p2.id);
+// const sortedProductByCategory = (x) => x.sort((p1, p2) => p1.id - p2.id);   this is the old style of sort
 
 const Products = () => {
-  const { loading, products, choosenSort } = useContext(MyContext);
+  const { loading, products, choosenSortPrice, choosenSort } =
+    useContext(MyContext);
 
-  if (choosenSort === "Price: Low - High") {
-    sortedProductsPriceLow2High(products);
-  } else if (choosenSort === "Price: High - Low") {
-    sortedProductsPriceHigh2Low(products);
-  } else {
-    sortedProductByCategory(products);
+  const productsFilter = products.filter(
+    (ev) => ev.price >= choosenSortPrice[0] && ev.price <= choosenSortPrice[1]
+  );
+
+  if (choosenSort === "h2l") {
+    sortedProductsPriceHigh2Low(productsFilter);
+  } else if (choosenSort === "l2h") {
+    sortedProductsPriceLow2High(productsFilter);
   }
-
+  console.log(productsFilter);
   return !loading ? (
     <div className="products">
-      {products.map(function (event, index) {
+      {productsFilter.map((event, index) => {
         return (
           <Product
             category={event.category}

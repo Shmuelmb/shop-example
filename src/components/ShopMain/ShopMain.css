@@ -144,7 +144,8 @@
 
     .ShopMain{
         display: flex;
-        gap: 10px;
+        gap: 20px;
+        justify-content: center;
     }
     
     /*------------------------------------*\
@@ -154,11 +155,13 @@
     @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
     
     body {
-      margin: 0 auto;
+      display: flex;
+      margin: auto;
+      justify-content: center;
+      align-items: center;
       width: 90%;
-      max-width: 1240px;
       font-family: "Roboto", sans-serif;
-      background-color: #9cd9e694;
+      background-color: #a6aeb094;
     }
     
     /* Typography */
