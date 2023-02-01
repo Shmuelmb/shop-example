@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./ProductPage.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import Addbtn from "../Products/Product/btns/Addbtn";
+import Buybtn from "../Products/Product/btns/Buybtn";
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import CardContent from "@mui/material/CardContent";
 
 const ProductPage = () => {
   const { productid } = useParams();
@@ -8,7 +14,7 @@ const ProductPage = () => {
   const getData = async () => {
     try {
       const response = await fetch(
-        `https://fakestoreapi.com/products/${productid}`
+        `http://localhost:8000/api/products/getProduct/${productid}`
       );
       const data = await response.json();
       setProduct(data);
@@ -19,13 +25,23 @@ const ProductPage = () => {
 
   useEffect(() => {
     getData();
-  }, [product]);
+  }, [productid]);
 
   return (
-    <div className="ProductPage">
-      <img src={product.image} alt={product.title} />
-      <h1>{product.title}</h1>
-      <h3>${product.price}</h3>
+    <div className="container">
+      <div className="card">
+        <img src={product.image} alt={product.title} />
+        <div className="detlais">
+          <div className="text">
+            <h4>{product.title}</h4>
+            <p>{product.description}</p>
+
+            <h3>${product.price}</h3>
+          </div>
+
+          <Addbtn id={product._id} />
+        </div>
+      </div>
     </div>
   );
 };

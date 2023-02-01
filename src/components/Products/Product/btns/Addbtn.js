@@ -10,7 +10,7 @@ const Addbtn = ({ id }) => {
     const newArr = [...arr];
     const clickID = eventOfClick.target.id;
     newArr.map((ev) => {
-      if (ev.id === parseInt(clickID)) {
+      if (ev._id === clickID) {
         ev.Amount++;
       }
     });
@@ -24,7 +24,7 @@ const Addbtn = ({ id }) => {
       onClick={(event) => {
         addAmount(cartList, setCartList, event);
       }}
-      className="btn addBtn">
+      >
       Add to cart
     </Button>
   );

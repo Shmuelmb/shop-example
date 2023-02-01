@@ -2,13 +2,14 @@ import React, { useContext, useEffect } from "react";
 import MyContext from "../../../MyContext";
 import "./ShoppingCart.css";
 import Button from "@mui/material/Button";
+
 const ShoppingCart = () => {
   const { cartList, setCartList } = useContext(MyContext);
   const addAmount = (arr, setArr, eventOfClick) => {
     const newArr = [...arr];
     const clickID = eventOfClick.target.id;
     newArr.map((ev) => {
-      if (ev.id === parseInt(clickID)) {
+      if (ev._id === clickID) {
         ev.Amount++;
       }
     });
@@ -18,7 +19,7 @@ const ShoppingCart = () => {
     const newArr = [...arr];
     const clickID = eventOfClick.target.id;
     newArr.map((ev) => {
-      if (ev.id === parseInt(clickID)) {
+      if (ev._id === clickID) {
         ev.Amount--;
         if (ev.Amount === 0) {
           ev.DateCreated = 0;
@@ -36,7 +37,6 @@ const ShoppingCart = () => {
       }
     }
   });
-
   cartListCopy.sort((a, b) => a.DateCreated - b.DateCreated);
 
   return (
@@ -44,14 +44,14 @@ const ShoppingCart = () => {
       {cartListCopy.map((item, index) => (
         <div key={index} className="itemInCart">
           <img src={item.image} alt={item.title} />
-          <p>{item.title}</p>
+          <h5>{item.title}</h5>
           <p className="p2">Price: {item.price * item.Amount}</p>
           <p className="p2"> Amount: {item.Amount}</p>
           <Button
             size="small"
             color="error"
             variant="contained"
-            id={item.id}
+            id={item._id}
             onClick={(event) => removeAmount(cartList, setCartList, event)}>
             -
           </Button>
@@ -59,7 +59,7 @@ const ShoppingCart = () => {
             size="small"
             color="error"
             variant="contained"
-            id={item.id}
+            id={item._id}
             onClick={(event) => addAmount(cartList, setCartList, event)}>
             +
           </Button>

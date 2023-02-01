@@ -2,15 +2,15 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 30%;
+    width: 400px;
+ 
 }
 
 .itemInCart{
     display: flex;
     align-items: center;
     gap: 15px;
-    width: 100%;
-
+    width: 390px;
 }
 
 .itemInCart >img{
@@ -19,10 +19,11 @@
 }
 
 .itemInCart > p{
-    text-align: left; 
-    width: 30%;
+    font-size: 13px
 }
-
-.p2{
-    text-align: center;
+h5{
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

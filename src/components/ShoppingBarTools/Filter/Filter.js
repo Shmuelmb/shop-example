@@ -7,18 +7,21 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 
 const Filter = () => {
-  const { onFilterChange, categories } = useContext(MyContext);
+  const { onFilterChange, categories, setSearchValue, setChoosenSortPrice } =
+    useContext(MyContext);
   const [label, setLabel] = useState(categories[0]);
   const handleChange = (event) => {
     setLabel(event.target.value);
   };
   return (
-    <div className="collection-sort">
+    <div className="filter-container">
       <InputLabel>Filter by:</InputLabel>
       <Select
         onChange={(event) => {
           handleChange(event);
           onFilterChange(event);
+          setSearchValue("");
+          setChoosenSortPrice([0, 999.99]);
         }}
         value={label}
         className="filter">

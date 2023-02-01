@@ -6,18 +6,20 @@ import ShopMain from "./components/ShopMain/ShopMain";
 import NotFound from "./components/NotFound/NotFound";
 import AboutMe from "./components/AboutMe/AboutMe";
 import Nav from "./components/Nav/Nav";
-import WelcomePage from "./components/WelcomePage/WelcomePage";
 import ProductPage from "./components/ProductPage/ProductPage";
+import LoginPage from "./components/WelcomePage/LoginPage";
 
 function App() {
   // useState object
+  const [searchValue, setSearchValue] = useState("");
   const [choosenSortPrice, setChoosenSortPrice] = useState([0, 999.99]);
-  const [choosenSort, setChoosenSort] = useState()
+  const [isChoosenSortH2L, setIsChoosenSortH2L] = useState();
   const [products, setProducts] = useState([]); // המוצרים עם השינויים שלהם
   const [allProducts, setAllProducts] = useState([]); // רשימת המוצרים ללא שינוים עליהם
   const [loading, setLoading] = useState(false);
   const [cartList, setCartList] = useState([]);
   const [productID, setProductID] = useState("");
+  const [productsFilter, setProductsFilter] = useState([]);
 
   // func
   const onFilterChange = (e) => {
@@ -25,6 +27,20 @@ function App() {
       setProducts(allProducts);
     } else {
       setProducts(allProducts.filter((p) => p.category === e.target.value));
+    }
+  };
+
+  const onSearchClick = (e) => {
+    if (e.target.value.length > 0) {
+      products.map((item) => {
+        if (item.title.includes(e.target.value)) {
+          setProducts(
+            [...products].filter((p) => p.title.includes(e.target.value))
+          );
+        }
+      });
+    } else {
+      setProducts(allProducts);
     }
   };
 
@@ -40,19 +56,41 @@ function App() {
       .filter((value, index, array) => array.indexOf(value) === index);
 
   // actions
-
+  const getData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/products/getAllProducts"
+      );
+      const data = await response.json();
+      setAllProducts(data);
+      setProducts(data);
+      addKeyForObjState(setCartList, "Amount", 0, data);
+      addKeyForObjState(setCartList, "DateCreated", 0, data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   const categories = createListOfKey(allProducts, "category");
   categories.unshift("All categories");
 
-  const priceList = createListOfKey(allProducts, "price");
-  priceList.sort((a, b) => a - b);
   return (
     <BrowserRouter>
       <MyContext.Provider
         value={{
-          choosenSort,
-          setChoosenSort,
-          priceList,
+          createListOfKey,
+          productsFilter,
+          setProductsFilter,
+          onSearchClick,
+          searchValue,
+          setSearchValue,
+          isChoosenSortH2L,
+          setIsChoosenSortH2L,
           addKeyForObjState,
           setProducts,
           setAllProducts,
@@ -71,11 +109,11 @@ function App() {
         }}>
         <Nav />
         <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="products" element={<ShopMain />} />
+          <Route path="/" element={<ShopMain />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="about" element={<AboutMe />} />
           <Route path="/*" element={<NotFound />} />
-          <Route path="products/:productid" element={<ProductPage />} />
+          <Route path="/products/:productid" element={<ProductPage />} />
         </Routes>
       </MyContext.Provider>
     </BrowserRouter>
