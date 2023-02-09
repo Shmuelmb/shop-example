@@ -35,7 +35,7 @@ const Sort = () => {
   });
   const minDistance = priceList[0];
   const maxDistance = priceList[priceList.length - 1];
-  const [value, setValue] = useState([200, 500]);
+  const [value, setValue] = useState([0, 9999]);
 
   return (
     <div className="collection-sort">

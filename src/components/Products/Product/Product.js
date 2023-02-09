@@ -15,7 +15,7 @@ const Product = ({ id, Urlimage, title, price, category }) => {
   const navigate = useNavigate("products");
   const { setProductID } = useContext(MyContext);
   return (
-    <Card sx={{ width: 250, height: 370 }}>
+    <Card className="pCard" sx={{ width: 250, height: 370 }}>
       <Stack>
         <img className="cardImage" src={Urlimage} alt={title} />
         <CardContent>

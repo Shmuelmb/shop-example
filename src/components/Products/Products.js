@@ -11,7 +11,6 @@ const sortedProductsPriceHigh2Low = (x) => {
 const sortedProductsPriceLow2High = (x) => {
   x.sort((p1, p2) => (p1.price < p2.price ? -1 : p1.price > p2.price ? 1 : 0));
 };
-// const sortedProductByCategory = (x) => x.sort((p1, p2) => p1.id - p2.id);   this is the old style of sort
 
 const Products = () => {
   const {
@@ -20,7 +19,6 @@ const Products = () => {
     choosenSortPrice,
     isChoosenSortH2L,
     searchValue,
-    setPriceList,
     productsFilter,
     setProductsFilter,
   } = useContext(MyContext);
@@ -32,19 +30,18 @@ const Products = () => {
     );
     setProductsFilter(priceListLocal);
 
-    //Actions for High to low button
-    if (isChoosenSortH2L === false) {
-      sortedProductsPriceLow2High(productsFilter);
-    } else if (isChoosenSortH2L) {
-      sortedProductsPriceHigh2Low(productsFilter);
-    }
-
     //Actions for search bar
     if (searchValue.length > 0) {
-      const titlePrice = [...productsFilter].filter((ev) =>
+      const titlePrice = priceListLocal.filter((ev) =>
         ev.title.toLowerCase().includes(searchValue.toLowerCase())
       );
       setProductsFilter(titlePrice);
+    }
+    //Actions for High to low button
+    if (isChoosenSortH2L === false) {
+      sortedProductsPriceLow2High(priceListLocal);
+    } else if (isChoosenSortH2L) {
+      sortedProductsPriceHigh2Low(priceListLocal);
     }
   }, [choosenSortPrice, isChoosenSortH2L, products, searchValue]);
 

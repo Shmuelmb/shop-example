@@ -7,8 +7,8 @@ import NotFound from "./components/NotFound/NotFound";
 import AboutMe from "./components/AboutMe/AboutMe";
 import Nav from "./components/Nav/Nav";
 import ProductPage from "./components/ProductPage/ProductPage";
-import LoginPage from "./components/WelcomePage/LoginPage";
-
+import LoginPage from "./components/LoginPage/LoginPage";
+import Register from "./components/Register/Register";
 function App() {
   // useState object
   const [searchValue, setSearchValue] = useState("");
@@ -110,6 +110,8 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<ShopMain />} />
+          <Route path="/register" element={<Register />} />
+
           <Route path="/login" element={<LoginPage />} />
           <Route path="about" element={<AboutMe />} />
           <Route path="/*" element={<NotFound />} />
